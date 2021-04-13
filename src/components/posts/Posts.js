@@ -1,4 +1,4 @@
-import React, {useEffect } from 'react'
+import React, {useEffect, useNavigate } from 'react'
 import { connect } from 'react-redux';
 import { getAllPosts } from '../../actions/tasksActions'
 import SpinnerCustom from '../shared/SpinnerCustom';
@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import {Link} from 'react-router-dom';
 
 const Posts = (...props) => {
+
 
     const {allPosts} = props[0]
 
@@ -38,7 +39,8 @@ const Posts = (...props) => {
       const classes = useStyles();
 
       const detailPost = (id) =>{
-
+          console.log("OME", props[0].history.push)
+        //props[0].history.push(`/posts/${id}`, detail={detail: id})
       } 
     
     return (
@@ -48,7 +50,7 @@ const Posts = (...props) => {
                <div style={{display: 'flex', flexWrap: 'wrap', justifyContent: 'center'}}> 
                    {
                    allPosts && allPosts.map((post)=>
-                   <div style={{width: '30%', margin: '1%', minHeight: '20%', cursor:'pointer'}} key={post.id}>
+                   <div style={{width: '30%', margin: '1%', minHeight: '20%', cursor:'pointer'}} key={post.id} onClick={()=>detailPost(post.id)}>
                        <Card className={classes.root}>
                    <CardContent>
                      <Typography variant="h5" component="h2">
@@ -59,7 +61,10 @@ const Posts = (...props) => {
                      </Typography>
                    </CardContent>
                    <CardActions>
-                   <Link className="btn btn-primary" to={`/posts/${post.id}`}>
+                   <Link className="btn btn-primary" to={{
+      pathname: `/posts/${post.id}`,
+      state: { detail: post }
+    }}>
                     More Info
                 </Link>
                    </CardActions>
@@ -67,9 +72,6 @@ const Posts = (...props) => {
                    </div>)}
                    
                </div>
-               
-               )
-           
         </div>
     )
 }

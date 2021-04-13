@@ -1,18 +1,22 @@
 import React, { useEffect } from 'react'
+import { withRouter } from "react-router";
 
 const DetailPosts = (...props) => {
     
-    console.log("DATAIL POSTS", props[0].match.params.id)
+    const idPost = props[0].match.params.id;
+    const detailPost = (props[0].location.state || {}).detail
+
+    console.log("DETAIL POSTS", detailPost)
 
     useEffect(()=>{
-        console.log("DETAIL POSTS")
-    }, [])
+        console.log("DETAIL POSTS", idPost)
+    }, [props[0].match.params.id])
 
     return (
         <div>
-            <label>Details posts</label>
+            <h1>OME {detailPost.title}</h1>
         </div>
     )
 }
 
-export default DetailPosts
+export default withRouter(DetailPosts);

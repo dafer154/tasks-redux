@@ -19,11 +19,12 @@ export const saveComment = status => dispatch => {
     })
 }
 
-export const commentPost = (status, id) => dispatch => {
-    // dispatch({
-    //     type: TOGGLE_STATUS,
-    //     status,
-    //     payload: id
-    // })
-    console.log("TEST")
+export const commentsPost = (idPost) => dispatch => {
+    axios.get("https://jsonplaceholder.typicode.com/comments")
+        .then(res => {
+            dispatch({
+                type: COMMENT_POST,
+                payload: {idPost, comments: res.data}
+            })
+        })
 }
