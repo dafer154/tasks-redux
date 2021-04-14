@@ -18,11 +18,12 @@ export const saveComment = (newComment) => (dispatch) => {
 };
 
 export const commentsPost = (postId) => (dispatch) => {
-    axios.get(`https://jsonplaceholder.typicode.com/comments?postId=${postId}`).then((res) => {
-    console.log("comments", res)    
-    dispatch({
-            type: COMMENT_POST,
-            payload: res.data
+    axios
+        .get(`https://jsonplaceholder.typicode.com/comments?postId=${postId}`)
+        .then((res) => {
+            dispatch({
+                type: COMMENT_POST,
+                payload: res.data,
+            });
         });
-    });
 };

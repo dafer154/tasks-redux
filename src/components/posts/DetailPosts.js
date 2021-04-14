@@ -52,7 +52,7 @@ const DetailPosts = (...props) => {
         root: {
             minWidth: 275,
             backgroundColor: "rgb(124 45 150 / 18%)",
-            borderRadius: '9%'
+            borderRadius: "9%",
         },
         bullet: {
             display: "inline-block",
