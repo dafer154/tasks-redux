@@ -1,4 +1,4 @@
-import React, { useEffect} from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { getAllPosts } from "../../actions/tasksActions";
 import SpinnerCustom from "../shared/SpinnerCustom";
@@ -19,6 +19,8 @@ const Posts = (...props) => {
     const useStyles = makeStyles({
         root: {
             minWidth: 275,
+            backgroundColor: "rgb(124 45 150 / 18%)",
+            borderRadius: "9%",
         },
         bullet: {
             display: "inline-block",
@@ -41,6 +43,7 @@ const Posts = (...props) => {
             <div>
                 <h1>Tasks REDUX</h1>
             </div>
+            <hr></hr>
             <div
                 style={{
                     display: "flex",
@@ -68,17 +71,24 @@ const Posts = (...props) => {
                                         {post.body}
                                     </Typography>
                                 </CardContent>
-                                <CardActions>
-                                    <Link
-                                        className="btn btn-primary"
-                                        to={{
-                                            pathname: `/posts/${post.id}`,
-                                            state: { detail: post },
-                                        }}
-                                    >
-                                        More Info
-                                    </Link>    
-                                </CardActions>
+                                <div
+                                    style={{
+                                        display: "flex",
+                                        justifyContent: "center",
+                                    }}
+                                >
+                                    <CardActions>
+                                        <Link
+                                            className="btn btn-primary"
+                                            to={{
+                                                pathname: `/posts/${post.id}`,
+                                                state: { detail: post },
+                                            }}
+                                        >
+                                            More Info
+                                        </Link>
+                                    </CardActions>
+                                </div>
                             </Card>
                         </div>
                     ))}

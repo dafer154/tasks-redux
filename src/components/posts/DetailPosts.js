@@ -8,7 +8,6 @@ import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
 
 const DetailPosts = (...props) => {
-    
     const idPost = props[0].match.params.id;
     const detailPost = (props[0].location.state || {}).detail;
 
@@ -18,11 +17,7 @@ const DetailPosts = (...props) => {
         email: "",
     });
 
-    const [testComents, setTestComents] = useState(props[0].arrayCommentsPosts || [])
-
     const { arrayCommentsPosts } = props[0] || [];
-
-    console.log("ARRAY COMMENTS", testComents);
 
     useEffect(() => {
         props[0].commentsPost(idPost);
@@ -35,7 +30,6 @@ const DetailPosts = (...props) => {
         });
     };
 
-
     const createComment = (event) => {
         event.preventDefault();
 
@@ -44,7 +38,7 @@ const DetailPosts = (...props) => {
             email: datos.email,
             name: datos.name,
             postId: parseInt(idPost),
-            id: Math.floor(Math.random() * 100)
+            id: Math.floor(Math.random() * 100),
         };
 
         try {
@@ -57,6 +51,8 @@ const DetailPosts = (...props) => {
     const useStyles = makeStyles({
         root: {
             minWidth: 275,
+            backgroundColor: "rgb(124 45 150 / 18%)",
+            borderRadius: '9%'
         },
         bullet: {
             display: "inline-block",
@@ -76,15 +72,29 @@ const DetailPosts = (...props) => {
     return (
         <div>
             {!arrayCommentsPosts && <SpinnerCustom />}
+            <h1>Detail Post</h1>
+            <hr></hr>
             <div>
                 <h1>{detailPost.title}</h1>
                 <p>{detailPost.body}</p>
             </div>
 
-            <div>
+            <div
+                style={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    justifyContent: "center",
+                }}
+            >
                 {arrayCommentsPosts &&
                     arrayCommentsPosts.map((comment) => (
-                        <div key={comment.id}>
+                        <div
+                            key={comment.id}
+                            style={{
+                                width: "30%",
+                                margin: "1%",
+                            }}
+                        >
                             <Card className={classes.root}>
                                 <CardContent>
                                     <Typography variant="h5" component="h2">
@@ -100,53 +110,53 @@ const DetailPosts = (...props) => {
                             </Card>
                         </div>
                     ))}
+            </div>
+            <h1>Comment post</h1>
+            <hr></hr>
+            <div>
+                <div className="card card-body">
+                    <div className="form-group">
+                        <label>Name</label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            name="name"
+                            placeholder="Name"
+                            onChange={onInputChange}
+                            required
+                        />
+                    </div>
 
-                <div>
-                    <div className="card card-body">
-                        <div className="form-group">
-                            <label>Name</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                name="name"
-                                placeholder="Name"
-                                onChange={onInputChange}
-                                required
-                            />
-                        </div>
+                    <div className="form-group">
+                        <label>Body</label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            name="body"
+                            placeholder="Body "
+                            onChange={onInputChange}
+                            required
+                        />
+                    </div>
 
-                        <div className="form-group">
-                            <label>Body</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                name="body"
-                                placeholder="Body "
-                                onChange={onInputChange}
-                                required
-                            />
-                        </div>
-
-                        <div className="form-group">
-                            <label>Email</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                name="email"
-                                placeholder="Title"
-                                onChange={onInputChange}
-                                required
-                            />
-                        </div>
+                    <div className="form-group">
+                        <label>Email</label>
+                        <input
+                            type="text"
+                            className="form-control"
+                            name="email"
+                            placeholder="Email"
+                            onChange={onInputChange}
+                            required
+                        />
                     </div>
                 </div>
-
-                <form onSubmit={createComment}>
-                    <button type="submit" className="btn btn-success">
-                        Save
-                    </button>
-                </form>
             </div>
+            <form onSubmit={createComment}>
+                <button type="submit" className="btn btn-success">
+                    Save
+                </button>
+            </form>
         </div>
     );
 };

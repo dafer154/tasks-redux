@@ -1,5 +1,4 @@
 .about__container {
-    padding-top: 3%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -8,10 +7,10 @@
 }
 
 .about__container__img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    box-shadow: 1.5px 1.5px 8px #c76284;
+    width: 300px;
+    height: 300px;
+    border-radius: 9%;
+    box-shadow: 1.5px 1.5px 8px #a98d96;
     justify-self: center;
 }
 
@@ -21,8 +20,4 @@
 
 .about__text {
     text-align: justify;
-}
-
-.title {
-    padding-bottom: 2%;
 }

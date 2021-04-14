@@ -8,7 +8,7 @@ const Navigation = () => {
         <div>
             <Navbar expand="lg" bg="dark" variant="dark">
                 <NavLink to="/">
-                    <Navbar.Brand>Patagonian TEST</Navbar.Brand>
+                    <Navbar.Brand>TASKS REDUX</Navbar.Brand>
                 </NavLink>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">

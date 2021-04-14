@@ -15,9 +15,7 @@ const tasksReducer = (state = initialState, action) => {
         case COMMENT_POST:
             return {
                 ...state,
-                arrayCommentsPosts: action.payload.comments.filter(
-                    (comment) => comment.postId == action.payload.postId
-                ),
+                arrayCommentsPosts: action.payload
             };
         case SAVE_COMMENT:
             return {
