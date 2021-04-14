@@ -1,20 +1,35 @@
-import { ALL_POSTS, SAVE_COMMENT, COMMENT_POST } from '../actions/types';
+import { ALL_POSTS, SAVE_COMMENT, COMMENT_POST } from "../actions/types";
 
 const initialState = {
-    allPosts: []
-}
+    allPosts: [],
+    arrayCommentsPosts: [],
+};
 
 const tasksReducer = (state = initialState, action) => {
     switch (action.type) {
         case ALL_POSTS:
-            console.log("ENTER REDUCER", action)
             return {
                 ...state,
-                allPosts: action.payload
-            }
+                allPosts: action.payload,
+            };
+        case COMMENT_POST:
+            return {
+                ...state,
+                arrayCommentsPosts: action.payload.comments.filter(
+                    (comment) => comment.postId == action.payload.postId
+                ),
+            };
+        case SAVE_COMMENT:
+            return {
+                ...state,
+                arrayCommentsPosts: [
+                    ...state.arrayCommentsPosts,
+                    action.payload,
+                ],
+            };
         default:
-            return state
+            return state;
     }
-}
+};
 
 export default tasksReducer;
